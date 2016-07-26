@@ -1,0 +1,13 @@
+# Created by .ignore support plugin (hsz.mobi)
+__pycache__/
+*.py[cod]
+*$py.class
+.idea/
+*~
+.DS_Store
+
+# Django stuff:
+*.log
+.env
+todolist/settings_local.py
+todolist.sqlite3

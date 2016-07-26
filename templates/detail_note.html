@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Карточка - {{ note.title }}</title>
+</head>
+<body>
+    <style>
+        b {
+            margin-left: 40px;
+        }
+    </style>
+    <p>Заголовок:</p>
+        <b>{{ note.title }}</b>
+    <p>Описание:</p>
+        <b>{{ note.description }}</b>
+    <p>Избранная закладка?</p>
+        <b>{{ note.is_fav|yesno:'Да, Нет' }}</b>
+    <p>UUID:</p>
+        <b>{{ note.ext_id }}</b>
+</body>
+</html>

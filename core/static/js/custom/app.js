@@ -29,6 +29,9 @@ Ext.onReady(function () {
         }, {
             name: 'is_fav',
             type: 'boolean'
+        }, {
+            name: 'ext_id',
+            type: 'string'
         }],
         proxy: {
             type: 'ajax',

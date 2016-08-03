@@ -33,7 +33,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         return self.is_superuser
 
     def __unicode__(self):
-        return u'%s - %s' % (self.phone, self.email)
+        return self.email
 
     def get_full_name(self):
         return u'%s %s' % (self.first_name, self.last_name)

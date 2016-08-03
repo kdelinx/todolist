@@ -245,6 +245,13 @@ Ext.onReady(function () {
                         handler: function () {
                             windowAdd.show();
                         }
+                    },
+                    {
+                        xtype: 'button',
+                        text: 'Логин',
+                        handler: function () {
+                            windowLogin.show();
+                        }
                     }, {
                         xtype: 'button',
                         text: 'Регистрация',
@@ -458,6 +465,71 @@ Ext.onReady(function () {
                             if (success) {
                                 Ext.MessageBox.alert(
                                     'Успешная регистрация со статусом ' +
+                                    response.statusText['status']
+                                );
+                                windowRegister.hide();
+                            } else {
+                                Ext.MessageBox.alert('Ошибка');
+                            }
+                        }
+                    });
+                }
+            }]
+    });
+
+    var windowLogin = Ext.create('Ext.window.Window', {
+        title: 'Авторизация пользователя',
+        width: 300,
+        height: 300,
+        layout: 'anchor',
+        items: [Ext.create('Ext.form.Panel',
+            {
+                items: [
+                    {
+                        xtype: 'textfield',
+                        fieldLabel: 'Email:',
+                        allowBlank: false,
+                        emptyText: 'введите email',
+                        minLength: 15,
+                        maxLength: 255,
+                        name: 'email'
+                    },
+                    {
+                        xtype: 'textfield',
+                        fieldLabel: 'Пароль:',
+                        allowBlank: false,
+                        emptyText: 'введите пароль',
+                        inputType: 'password',
+                        minLength: 8,
+                        maxLength: 255,
+                        name: 'password'
+                    }
+                ]
+            })
+        ],
+        fbar: ['->', {
+            xtype: 'button',
+            text: 'Отмена',
+            handler: function () {
+                windowRegister.hide();
+            }
+        },
+            {
+                xtype: 'button',
+                text: 'Логин',
+                handler: function () {
+                    var form_obj = windowLogin.items.get(0);
+                    Ext.Ajax.request({
+                        method: 'POST',
+                        url: '/users/user/login/',
+                        jsonData: {
+                            email: form_obj.items.items[0].value,
+                            password: form_obj.items.items[1].value
+                        },
+                        callback: function (options, success, response) {
+                            if (success) {
+                                Ext.MessageBox.alert(
+                                    'Успешная  авторизация со статусом ' +
                                     response.statusText['status']
                                 );
                                 windowRegister.hide();
